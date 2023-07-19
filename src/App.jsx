@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppWrapper } from 'src/style';
 import Layout from './components/Layout/Layout';
-import Home from './components/Home/style';
+import Home from './components/Home/Home';
 
 const App = () => {
   return (
