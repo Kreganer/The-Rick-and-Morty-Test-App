@@ -1,5 +1,4 @@
 export const getPagesCount = (pagesCount, characterCount) => {
-  console.log(Math.ceil(pagesCount / characterCount));
   return Math.ceil(pagesCount / characterCount);
 };
 

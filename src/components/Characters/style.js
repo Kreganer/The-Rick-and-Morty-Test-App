@@ -58,26 +58,3 @@ export const ListWrapper = styled.div`
     grid-template-columns: repeat(1, auto);
   }
 `;
-
-export const CharacterCard = styled.div`
-  width: 400px;
-  height: 200px;
-  margin: 10px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  background: #3c3e44;
-  border: 1px #fff solid;
-
-  @media screen and (max-width: 768px) {
-    width: 700px;
-    height: 200px;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 250px;
-    height: 150px;
-  }
-`;

@@ -11,10 +11,10 @@ export const HomeWrapper = styled.div`
 export const HomeTitle = styled.span`
   width: 100%;
   height: 30%;
+  font-size: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: larger;
   text-align: center;
 
   cursor: default;
@@ -42,28 +42,5 @@ export const HomeButton = styled.button`
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
-  }
-`;
-
-export const CharacterCard = styled.div`
-  width: 400px;
-  height: 200px;
-  margin: 10px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  background: #3c3e44;
-  border: 1px #3c3e44 solid;
-
-  @media screen and (max-width: 768px) {
-    width: 700px;
-    height: 200px;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 250px;
-    height: 150px;
   }
 `;

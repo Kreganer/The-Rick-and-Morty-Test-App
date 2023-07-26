@@ -1,20 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  HomeWrapper,
-  HomeTitle,
-  InformationBox,
-  HomeButton,
-  CharacterCard
-} from 'src/components/Home/style';
 import { useFetching } from 'src/hooks/useFetching';
 import CharactersService from 'src/services/CharactersService';
 import Loader from 'src/components/Loader/Loader';
+import CharacterCard from 'src/components/CharacterCard/CharacterCard';
+import { HomeWrapper, HomeTitle, InformationBox, HomeButton } from 'src/components/Home/style';
 
 const Home = () => {
   const navigate = useNavigate();
   const [charactersData, setCharactersData] = useState(null);
-  const [isLoading, fetchErrors, fetchCharacters] = useFetching(async () => {
+  const [isLoading, fetchError, fetchCharacters] = useFetching(async () => {
     const characters = await CharactersService.fetchRandomCharacter();
     setCharactersData(characters);
   });
@@ -23,25 +18,21 @@ const Home = () => {
     fetchCharacters();
   }, []);
 
+  console.log(charactersData);
+
   return (
     <HomeWrapper>
-      <HomeTitle>Title</HomeTitle>
+      <HomeTitle>Rick And Morty Characters</HomeTitle>
 
       <InformationBox>
-        <span>App Info Title</span>
+        <HomeTitle>Get nfo About Characters</HomeTitle>
 
-        <span>Info</span>
+        <span>
+          Information is displayed in the form of cards with minimal information, but you can click
+          on it and see more.
+        </span>
 
-        <CharacterCard>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <img width={200} src={charactersData?.image} alt={charactersData?.name} />
-              <span>{charactersData?.name}</span>
-            </>
-          )}
-        </CharacterCard>
+        {isLoading ? <Loader /> : <CharacterCard character={charactersData} />}
 
         <HomeButton
           onClick={() => {

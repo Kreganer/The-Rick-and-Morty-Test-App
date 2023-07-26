@@ -1,36 +1,47 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useFetching } from 'src/hooks/useFetching';
 import CharactersService from 'src/services/CharactersService';
 import { getPagesCount } from 'src/utils/pages';
 import Loader from 'src/components/Loader/Loader';
+import CharacterCard from 'src/components/CharacterCard/CharacterCard';
+import Pagination from 'src/components/Pagination/Pagination';
 import {
-  CharacterCard,
   CharactersListButton,
   CharactersListWrapper,
   ListWrapper
 } from 'src/components/Characters/style';
-import Pagination from '../Pagination/Pagination';
 
 const Characters = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [charactersData, setCharactersData] = useState(null);
   const [pagesCount, setPagesCount] = useState(0);
-  const [page, setPage] = useState(1);
 
-  const [isLoading, fetchErrors, fetchCharacters] = useFetching(async () => {
-    const characters = await CharactersService.fetchCharacters(page);
+  const [isLoading, fetchError, fetchCharactersInfo] = useFetching(async () => {
+    const characters = await CharactersService.fetchCharacters(Number(searchParams.get('page')));
     setCharactersData(characters);
     const totalCharacters = characters.info.count;
     setPagesCount(getPagesCount(totalCharacters, 20));
   });
 
   useEffect(() => {
-    fetchCharacters();
-  }, [page]);
+    fetchCharactersInfo();
+    checkSearchParams();
+  }, [searchParams]);
 
-  const chagnePage = (pageNum) => {
-    setPage(pageNum);
+  const checkSearchParams = () => {
+    if (searchParams.get('page') === null) {
+      searchParams.set('page', '1');
+      setSearchParams(searchParams);
+    } else {
+      return;
+    }
+  };
+
+  const handleChangePage = (page) => {
+    searchParams.set('page', page);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -48,10 +59,7 @@ const Characters = () => {
         ) : (
           <>
             {charactersData?.results.map((character) => (
-              <CharacterCard key={character.id}>
-                <img width={200} src={character.image} alt={character.name} />
-                <span>{character.name}</span>
-              </CharacterCard>
+              <CharacterCard key={character.id} character={character} />
             ))}
           </>
         )}
@@ -59,9 +67,10 @@ const Characters = () => {
 
       <Pagination
         charactersData={charactersData}
-        changePage={chagnePage}
-        page={page}
+        changePage={handleChangePage}
+        page={searchParams.get('page')}
         pagesCount={pagesCount}
+        isLoading={isLoading}
       />
     </CharactersListWrapper>
   );
