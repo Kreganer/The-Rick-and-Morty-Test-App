@@ -35,7 +35,7 @@ const Characters = () => {
   }, [searchParams]);
 
   const checkSearchParams = () => {
-    if (searchParams.get('page') === null) {
+    if (searchParams.get('page') === null || Number(searchParams.get('page') > pagesCount)) {
       searchParams.set('page', '1');
       setSearchParams(searchParams);
     } else {
