@@ -12,20 +12,29 @@ import {
   TitleInfo
 } from 'src/components/CharacterCard/style';
 
-const CharacterCard = ({ character }) => {
-  const [location, setLocation] = useState('');
+const CharacterCard = ({ character, setIsVisiable, setCurrent }) => {
+  const [firstEpisode, setFirstEpisode] = useState('');
   const [isLoading, fetchError, fetchCharactersInfo] = useFetching(async () => {
-    const firstLocation = await CharactersService.fetchFirstSeenEpisode(character.episode[0]);
-    setLocation(firstLocation);
+    const episode = await CharactersService.fetchFirstSeenEpisode(character.episode[0]);
+    setFirstEpisode(episode);
   });
 
   useEffect(() => {
     fetchCharactersInfo();
-    console.log(window.screen.width);
-  }, [window]);
+  }, []);
+
+  const handleOpenModal = () => {
+    if (setIsVisiable === undefined && setCurrent === undefined) return;
+
+    if (character !== null) {
+      setCurrent(character);
+    }
+
+    setIsVisiable(true);
+  };
 
   return (
-    <CharacterCardWrapper>
+    <CharacterCardWrapper onClick={() => handleOpenModal()}>
       <ImageWrapper src={character?.image} alt={character?.name} />
 
       <InfoWrapper>
@@ -49,7 +58,7 @@ const CharacterCard = ({ character }) => {
 
         <TitleInfo>First seen in:</TitleInfo>
 
-        <InfoText>{location?.name}</InfoText>
+        <InfoText>{firstEpisode?.name}</InfoText>
       </InfoWrapper>
     </CharacterCardWrapper>
   );

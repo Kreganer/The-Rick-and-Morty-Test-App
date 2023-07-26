@@ -16,13 +16,17 @@ export default class CharactersService {
     return responce.data;
   }
 
-  static async fetchCharacterById(id) {
-    const responce = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
-    return responce.data;
-  }
-
   static async fetchFirstSeenEpisode(episodeURL) {
     const responce = await axios.get(`${episodeURL}`);
     return responce.data;
+  }
+
+  static async fetchSeenEpisodes(episodeURLs) {
+    const episodes = [];
+    for (let i = 0; i < episodeURLs.length; i++) {
+      const responce = await axios.get(`${episodeURLs[i]}`);
+      episodes.push(responce.data);
+    }
+    return episodes;
   }
 }

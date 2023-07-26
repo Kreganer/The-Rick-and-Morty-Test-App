@@ -43,4 +43,9 @@ export const HomeButton = styled.button`
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+
+  @media screen and (max-width: 425px) {
+    width: 50%;
+    height: 10%;
+  }
 `;

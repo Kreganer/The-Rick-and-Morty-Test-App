@@ -17,6 +17,7 @@ const Pagination = ({ charactersData, changePage, page, pagesCount }) => {
         disabled={checkAvaliableDirection(charactersData, 'prev')}>
         &lt;
       </PaginationButton>
+
       {correctPagination(Number(page), pagesArray).map((pageNum) => {
         if (pageNum.range)
           return (
@@ -37,6 +38,7 @@ const Pagination = ({ charactersData, changePage, page, pagesCount }) => {
             </PaginationButton>
           );
       })}
+      
       <PaginationButton
         onClick={() => changePage(Number(page) + 1)}
         disabled={checkAvaliableDirection(charactersData, 'next')}>

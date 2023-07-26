@@ -18,8 +18,6 @@ const Home = () => {
     fetchCharacters();
   }, []);
 
-  console.log(charactersData);
-
   return (
     <HomeWrapper>
       <HomeTitle>Rick And Morty Characters</HomeTitle>
