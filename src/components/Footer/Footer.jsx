@@ -1,3 +1,4 @@
+import { StyledSpan } from 'src/UI/style';
 import {
   ColorWrapper,
   ColorsWrapper,
@@ -9,7 +10,7 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <ColorsWrapper>
-        <span>Colors asset:&nbsp;</span>
+        <StyledSpan>Colors asset:&nbsp;</StyledSpan>
 
         <ColorWrapper
           style={{
