@@ -16,4 +16,6 @@ export const IconWrapper = styled.div`
 
 export const HeaderTitle = styled.div`
   font-size: large;
-`
+  
+  cursor: default;
+`;

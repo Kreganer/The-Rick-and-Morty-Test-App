@@ -9,8 +9,17 @@ export const Global = createGlobalStyle`
     font-size: 15px;
 
     ::-webkit-scrollbar {
-      width: 0px;
-    };
+      width: 8px;
+      background-color: #272b33;
+      border-radius: 10px;
+      scrollbar-color: rebeccapurple red;
+      scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: limegreen;
+      border-radius: 10px;
+    }
 	}
 
   html, body, #root, #root>div {

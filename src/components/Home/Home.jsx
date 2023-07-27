@@ -1,8 +1,27 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HomeWrapper, HomeTitle, InformationBox, HomeButton } from 'src/components/Home/style';
+import {
+  HomeWrapper,
+  HomeTitle,
+  InformationBox,
+  HomeButton,
+  CharacterCard
+} from 'src/components/Home/style';
+import { useFetching } from 'src/hooks/useFetching';
+import CharactersService from 'src/services/CharactersService';
+import Loader from 'src/components/Loader/Loader';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [charactersData, setCharactersData] = useState(null);
+  const [isLoading, fetchErrors, fetchCharacters] = useFetching(async () => {
+    const characters = await CharactersService.fetchRandomCharacter();
+    setCharactersData(characters);
+  });
+
+  useEffect(() => {
+    fetchCharacters();
+  }, []);
 
   return (
     <HomeWrapper>
@@ -13,7 +32,16 @@ const Home = () => {
 
         <span>Info</span>
 
-        <span>Example</span>
+        <CharacterCard>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <img width={200} src={charactersData?.image} alt={charactersData?.name} />
+              <span>{charactersData?.name}</span>
+            </>
+          )}
+        </CharacterCard>
 
         <HomeButton
           onClick={() => {
