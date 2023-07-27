@@ -13,18 +13,18 @@ const Pagination = ({ charactersData, changePage, page, pagesCount }) => {
   return (
     <PaginationWrapper>
       <PaginationButton
-        onClick={() => changePage(page - 1)}
+        onClick={() => changePage(Number(page) - 1)}
         disabled={checkAvaliableDirection(charactersData, 'prev')}>
         &lt;
       </PaginationButton>
-      {correctPagination(page, pagesArray).map((pageNum) => {
+      {correctPagination(Number(page), pagesArray).map((pageNum) => {
         if (pageNum.range)
           return (
-            <StyledSpan key={pageNum.range.key} style={{ color: '#fff' }}>
+            <StyledSpan key={pageNum.key} style={{ color: '#fff' }}>
               ...
             </StyledSpan>
           );
-        else if (page === pageNum) {
+        else if (Number(page) === pageNum) {
           return (
             <PaginationCurrentPageButton disabled key={pageNum}>
               {pageNum}
@@ -38,7 +38,7 @@ const Pagination = ({ charactersData, changePage, page, pagesCount }) => {
           );
       })}
       <PaginationButton
-        onClick={() => changePage(page + 1)}
+        onClick={() => changePage(Number(page) + 1)}
         disabled={checkAvaliableDirection(charactersData, 'next')}>
         &gt;
       </PaginationButton>

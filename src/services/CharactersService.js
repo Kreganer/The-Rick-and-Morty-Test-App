@@ -20,4 +20,9 @@ export default class CharactersService {
     const responce = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
     return responce.data;
   }
+
+  static async fetchFirstSeenEpisode(episodeURL) {
+    const responce = await axios.get(`${episodeURL}`);
+    return responce.data;
+  }
 }
