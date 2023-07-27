@@ -1,59 +1,40 @@
 import { statusAsset } from 'src/utils/status';
 import { styled } from 'styled-components';
 
-export const CharacterCardWrapper = styled.div`
-  width: 400px;
-  height: 200px;
-  margin: 10px;
-  border-radius: 25px;
+export const CharacterModalInfoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  background: #3c3e44;
-  border: 1px #fff solid;
+  justify-content: space-around;
 
-  cursor: ${(props) => (props.clickable ? 'pointer' : 'default')};
-
-  @media screen and (max-width: 768px) {
-    width: 325px;
-    height: 150px;
-  }
-
-  @media screen and (max-width: 320px) {
-    width: 275px;
+  @media screen and (max-width: 425px) {
+    flex-direction: column;
   }
 `;
 
-export const ImageWrapper = styled.img`
-  width: 150px;
-  height: 200px;
-  object-fit: cover;
+export const CharacterImage = styled.img`
+  width: 200px;
+  border-radius: 25%;
+  border: 5px limegreen solid;
+  align-self: start;
 
-  @media screen and (max-width: 320px) {
-    width: 100px;
-    height: 150px;
+  @media screen and (max-width: 425px) {
+    align-self: center;
+    object-fit: cover;
   }
 `;
 
-export const InfoWrapper = styled.div`
-  width: 250px;
-  height: 200px;
+export const CharacterInfo = styled.div`
+  width: 80%;
+  height: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-around;
   color: #fff;
-
-  @media screen and (max-width: 768px) {
-    width: 250px;
-    height: 125px;
-  }
-
-  @media screen and (max-width: 320px) {
-    width: 200px;
-  }
 `;
 
 export const StatusWrapper = styled.div`
@@ -86,5 +67,6 @@ export const TitleInfo = styled.span`
 `;
 
 export const InfoText = styled.span`
+  margin: 5px;
   cursor: default;
 `;

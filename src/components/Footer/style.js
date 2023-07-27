@@ -32,4 +32,8 @@ export const ColorWrapper = styled.div`
 export const StyledLink = styled.a`
   text-decoration: none;
   color: #fff;
+
+  &:hover {
+    color: limegreen;
+  }
 `;

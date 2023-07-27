@@ -18,21 +18,19 @@ const Home = () => {
     fetchCharacters();
   }, []);
 
-  console.log(charactersData);
-
   return (
     <HomeWrapper>
       <HomeTitle>Rick And Morty Characters</HomeTitle>
 
       <InformationBox>
-        <HomeTitle>Get nfo About Characters</HomeTitle>
+        <HomeTitle>Get info About Characters</HomeTitle>
 
         <span>
           Information is displayed in the form of cards with minimal information, but you can click
           on it and see more.
         </span>
 
-        {isLoading ? <Loader /> : <CharacterCard character={charactersData} />}
+        {isLoading ? <Loader /> : <CharacterCard clickable={false} character={charactersData} />}
 
         <HomeButton
           onClick={() => {

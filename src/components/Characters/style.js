@@ -23,6 +23,10 @@ export const CharactersListButton = styled.button`
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+
+  @media screen and (max-width: 425px) {
+    width: 30%;
+  }
 `;
 
 export const ListWrapper = styled.div`
