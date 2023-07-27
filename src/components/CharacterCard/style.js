@@ -13,7 +13,7 @@ export const CharacterCardWrapper = styled.div`
   background: #3c3e44;
   border: 1px #fff solid;
 
-  cursor: pointer;
+  cursor: ${(props) => (props.clickable ? 'pointer' : 'default')};
 
   @media screen and (max-width: 768px) {
     width: 325px;

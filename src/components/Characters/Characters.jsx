@@ -65,6 +65,7 @@ const Characters = () => {
             {charactersData?.results.map((character) => (
               <CharacterCard
                 key={character.id}
+                clickable={true}
                 character={character}
                 setIsVisiable={setIsModal}
                 setCurrent={setCurrentCharacter}

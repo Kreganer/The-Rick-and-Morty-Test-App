@@ -30,7 +30,7 @@ const Home = () => {
           on it and see more.
         </span>
 
-        {isLoading ? <Loader /> : <CharacterCard character={charactersData} />}
+        {isLoading ? <Loader /> : <CharacterCard clickable={false} character={charactersData} />}
 
         <HomeButton
           onClick={() => {

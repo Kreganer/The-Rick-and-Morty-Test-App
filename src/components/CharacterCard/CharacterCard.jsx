@@ -12,7 +12,7 @@ import {
   TitleInfo
 } from 'src/components/CharacterCard/style';
 
-const CharacterCard = ({ character, setIsVisiable, setCurrent }) => {
+const CharacterCard = ({ character, setIsVisiable, setCurrent, clickable }) => {
   const [firstEpisode, setFirstEpisode] = useState('');
   const [isLoading, fetchError, fetchCharactersInfo] = useFetching(async () => {
     const episode = await CharactersService.fetchFirstSeenEpisode(character.episode[0]);
@@ -34,7 +34,7 @@ const CharacterCard = ({ character, setIsVisiable, setCurrent }) => {
   };
 
   return (
-    <CharacterCardWrapper onClick={() => handleOpenModal()}>
+    <CharacterCardWrapper clickable={clickable ? 1 : 0} onClick={() => handleOpenModal()}>
       <ImageWrapper src={character?.image} alt={character?.name} />
 
       <InfoWrapper>
